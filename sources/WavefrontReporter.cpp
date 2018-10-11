@@ -8,12 +8,18 @@
 
 #include "WavefrontReporter.hpp"
 
+#define SOCKET_ERROR "FATAL: Unable to connect to proxy"
+
 WavefrontReporter::WavefrontReporter(MetricRegistry *metricRegistry){
     registry = metricRegistry;
     sock = -1;
 }
 
 void WavefrontReporter::report(){
+    if(!createSocket()){
+        cout<<"FATAL: Unable to send metric" << endl;
+        return;
+    }
     list<Counter*> counters = registry->getCounters();
     list<Counter*>::iterator it =counters.begin();
     while (it != counters.end()) {
@@ -27,31 +33,30 @@ void WavefrontReporter::report(){
 }
 
 bool WavefrontReporter::createSocket(){
+    if(sock != -1){
+        return true;
+    }
+    sock = socket(AF_INET , SOCK_STREAM , 0);
     if(sock == -1){
-        sock = socket(AF_INET , SOCK_STREAM , 0);
-        if(sock == -1){
-            return false;
-        }
+        cout << SOCKET_ERROR << endl;
+        return false;
     }
     struct sockaddr_in server;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
     server.sin_family = AF_INET;
     server.sin_port = htons(2878);
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0){
+        cout << SOCKET_ERROR << endl;
         return false;
     }
-    cout<<"Socket created" <<endl;
     return true;
 }
 
 bool WavefrontReporter::sendData(string data){
-    if(!createSocket()){
-        return false;
-    }
     if(send(sock, data.c_str(), strlen(data.c_str()), 0) < 0){
         return false;
     }
-    cout << "Data sent" << endl;
+    cout << "Points sent." << endl;
     return true;
 }
 

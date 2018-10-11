@@ -13,6 +13,7 @@
 #include <iosfwd>
 #include <atomic>
 #include <list>
+#include <map>
 #include <string>
 #include <array>
 #include <sstream>
@@ -26,19 +27,16 @@ private:
     string name;
     string host;
     list<string> tags;
-    int last;
-    list<pair<long, int>> values;
+    atomic_int value;
+    long times[BUCKET];
+    int values[BUCKET];
     
 public:
     Counter(string metricName, string hostName);
     
     void inc();
     
-    void inc(int value);
-    
     void dec();
-    
-    void dec(int value);
     
     string getPoints();
     

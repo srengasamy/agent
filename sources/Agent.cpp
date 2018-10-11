@@ -13,6 +13,7 @@ static MetricRegistry *registry;
 static WavefrontReporter *reporter;
 static Scheduler *scheduler;
 static Counter* threadCounter;
+static Counter* blockedCounter;
 static JVM* jvm;
 
 void report(WavefrontReporter *reporter){
@@ -34,32 +35,30 @@ void JNICALL MonitorWaited(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, job
 }
 
 void JNICALL MonitorContendedEnter(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, jobject object) {
-    
+    blockedCounter->inc();
 }
 
 void JNICALL MonitorContendedEntered(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, jobject object) {
-    
+    blockedCounter->dec();
 }
 
 void JNICALL VMStart(jvmtiEnv *jvmti, JNIEnv *env) {
-    cout<<"starting" << endl;
     jvm->start(jvmti);
 }
 
 void JNICALL VMInit(jvmtiEnv *jvmti, JNIEnv *env, jthread thread) {
-    cout<<"init" << endl;
     jvm->init(jvmti);
 }
 
 void JNICALL VMDeath(jvmtiEnv *jvmti, JNIEnv *env) {
-    cout<<"death" << endl;
     jvm->dead(jvmti);
 }
 
 JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM *vm, char *options, void *reserved) {
     cout<< "Loading agent." << endl;
     registry = new MetricRegistry();
-    threadCounter = registry->counter("thread.count");
+    threadCounter = registry->counter("thread.all");
+    blockedCounter = registry->counter("thread.blocked");
     reporter = new WavefrontReporter(registry);
     scheduler = new Scheduler(max_n_threads);
     scheduler->every(5s, report, reporter);
