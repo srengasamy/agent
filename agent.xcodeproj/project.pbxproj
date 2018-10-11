@@ -6,8 +6,35 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4D39C87F216D5BBE00DEC89A /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D39C87D216D5BBE00DEC89A /* Counter.cpp */; };
+		4D39C880216D5BBE00DEC89A /* Counter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D39C87E216D5BBE00DEC89A /* Counter.hpp */; };
+		4D5DCACA216D749100395ECA /* MetricRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DCAC8216D749100395ECA /* MetricRegistry.cpp */; };
+		4D5DCACB216D749100395ECA /* MetricRegistry.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D5DCAC9216D749100395ECA /* MetricRegistry.hpp */; };
+		4D5DCAD2216DB90500395ECA /* WavefrontReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DCAD0216DB90500395ECA /* WavefrontReporter.cpp */; };
+		4D5DCAD3216DB90500395ECA /* WavefrontReporter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D5DCAD1216DB90500395ECA /* WavefrontReporter.hpp */; };
+		4D5DCAD9216DCE8300395ECA /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DCAD7216DCE8300395ECA /* Agent.cpp */; };
+		4D5DCADA216DCE8300395ECA /* Agent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D5DCAD8216DCE8300395ECA /* Agent.hpp */; };
+		4D5DCADD216F27F400395ECA /* JVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DCADB216F27F400395ECA /* JVM.cpp */; };
+		4D5DCADE216F27F400395ECA /* JVM.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D5DCADC216F27F400395ECA /* JVM.hpp */; };
+		4D5DCAE1216F283A00395ECA /* AgentUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DCADF216F283A00395ECA /* AgentUtil.cpp */; };
+		4D5DCAE2216F283A00395ECA /* AgentUtil.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D5DCAE0216F283A00395ECA /* AgentUtil.hpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4D39C875216D57FF00DEC89A /* libagent.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libagent.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D39C87D216D5BBE00DEC89A /* Counter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
+		4D39C87E216D5BBE00DEC89A /* Counter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Counter.hpp; sourceTree = "<group>"; };
+		4D5DCAC8216D749100395ECA /* MetricRegistry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MetricRegistry.cpp; sourceTree = "<group>"; };
+		4D5DCAC9216D749100395ECA /* MetricRegistry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MetricRegistry.hpp; sourceTree = "<group>"; };
+		4D5DCAD0216DB90500395ECA /* WavefrontReporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WavefrontReporter.cpp; sourceTree = "<group>"; };
+		4D5DCAD1216DB90500395ECA /* WavefrontReporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WavefrontReporter.hpp; sourceTree = "<group>"; };
+		4D5DCAD7216DCE8300395ECA /* Agent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
+		4D5DCAD8216DCE8300395ECA /* Agent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Agent.hpp; sourceTree = "<group>"; };
+		4D5DCADB216F27F400395ECA /* JVM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JVM.cpp; sourceTree = "<group>"; };
+		4D5DCADC216F27F400395ECA /* JVM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = JVM.hpp; sourceTree = "<group>"; };
+		4D5DCADF216F283A00395ECA /* AgentUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AgentUtil.cpp; sourceTree = "<group>"; };
+		4D5DCAE0216F283A00395ECA /* AgentUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AgentUtil.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +51,7 @@
 		4D39C86C216D57FF00DEC89A = {
 			isa = PBXGroup;
 			children = (
+				4D39C87C216D5B9F00DEC89A /* sources */,
 				4D39C876216D57FF00DEC89A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -36,6 +64,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4D39C87C216D5B9F00DEC89A /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				4D5DCAD7216DCE8300395ECA /* Agent.cpp */,
+				4D5DCAD8216DCE8300395ECA /* Agent.hpp */,
+				4D5DCADF216F283A00395ECA /* AgentUtil.cpp */,
+				4D5DCAE0216F283A00395ECA /* AgentUtil.hpp */,
+				4D39C87D216D5BBE00DEC89A /* Counter.cpp */,
+				4D39C87E216D5BBE00DEC89A /* Counter.hpp */,
+				4D5DCADB216F27F400395ECA /* JVM.cpp */,
+				4D5DCADC216F27F400395ECA /* JVM.hpp */,
+				4D5DCAC8216D749100395ECA /* MetricRegistry.cpp */,
+				4D5DCAC9216D749100395ECA /* MetricRegistry.hpp */,
+				4D5DCAD0216DB90500395ECA /* WavefrontReporter.cpp */,
+				4D5DCAD1216DB90500395ECA /* WavefrontReporter.hpp */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -43,6 +90,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D5DCAE2216F283A00395ECA /* AgentUtil.hpp in Headers */,
+				4D5DCADE216F27F400395ECA /* JVM.hpp in Headers */,
+				4D39C880216D5BBE00DEC89A /* Counter.hpp in Headers */,
+				4D5DCACB216D749100395ECA /* MetricRegistry.hpp in Headers */,
+				4D5DCADA216DCE8300395ECA /* Agent.hpp in Headers */,
+				4D5DCAD3216DB90500395ECA /* WavefrontReporter.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D5DCADD216F27F400395ECA /* JVM.cpp in Sources */,
+				4D5DCACA216D749100395ECA /* MetricRegistry.cpp in Sources */,
+				4D5DCAD9216DCE8300395ECA /* Agent.cpp in Sources */,
+				4D5DCAE1216F283A00395ECA /* AgentUtil.cpp in Sources */,
+				4D39C87F216D5BBE00DEC89A /* Counter.cpp in Sources */,
+				4D5DCAD2216DB90500395ECA /* WavefrontReporter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +278,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/include,
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/include/darwin,
+					/Users/srengasamy/Scheduler,
+					/Users/srengasamy/CTPL,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -230,6 +295,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/include,
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/include/darwin,
+					/Users/srengasamy/Scheduler,
+					/Users/srengasamy/CTPL,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
