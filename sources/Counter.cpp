@@ -8,6 +8,8 @@
 
 #include "Counter.hpp"
 #include <time.h>
+#include <chrono>
+using namespace std::chrono;
 
 Counter::Counter(string metricName, string hostName) {
     name = metricName;
@@ -19,10 +21,8 @@ void Counter::inc() {
 }
 
 void Counter::inc(int value) {
-    long now = time(NULL);
-    int second = now % BUCKET;
-    values[second] += value;
-    times[second] = now;
+    milliseconds ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+    values.push_back(make_pair(ms.count(), value));
 }
 
 void Counter::dec() {
@@ -30,24 +30,22 @@ void Counter::dec() {
 }
 
 void Counter::dec(int value) {
-    long now = time(NULL);
-    int second = now % BUCKET;
-    values[second] -= value;
-    times[second] = now;
+    milliseconds ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+    values.push_back(make_pair(ms.count(), -value));
 }
 
 string Counter::getPoints(){
     stringstream stream;
-    long limit = time(NULL)-1;
-    for(int i=0;i<BUCKET;i++){
-        if(times[i] <= 0){
-            continue;
-        }else if(times[i] <=limit){
-            last += values[i];
-            stream << name << " " << last <<" " << times[i] << " " << "host=" << host << "\n";
-            times[i] = -1;
-            values[i] = 0;
+    milliseconds ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+    long now = ms.count() - 5000;
+    list<pair<long, int>>::iterator it =values.begin();
+    while (it != values.end()) {
+        pair<long, int> point  = (*it);
+        if(point.first>now){
+            break;
         }
+        stream << "\u2206" << name << " " << point.second <<" " << point.first << " " << "host=" << host << "\n";
+        values.erase(it++);
     }
     return stream.str();
 }

@@ -27,8 +27,7 @@ private:
     string host;
     list<string> tags;
     int last;
-    array<atomic_long, BUCKET> times;
-    array<atomic_int, BUCKET> values;
+    list<pair<long, int>> values;
     
 public:
     Counter(string metricName, string hostName);
@@ -42,5 +41,6 @@ public:
     void dec(int value);
     
     string getPoints();
+    
 };
 #endif /* Counter_hpp */

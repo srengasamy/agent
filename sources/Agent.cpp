@@ -42,14 +42,17 @@ void JNICALL MonitorContendedEntered(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread t
 }
 
 void JNICALL VMStart(jvmtiEnv *jvmti, JNIEnv *env) {
+    cout<<"starting" << endl;
     jvm->start(jvmti);
 }
 
 void JNICALL VMInit(jvmtiEnv *jvmti, JNIEnv *env, jthread thread) {
+    cout<<"init" << endl;
     jvm->init(jvmti);
 }
 
 void JNICALL VMDeath(jvmtiEnv *jvmti, JNIEnv *env) {
+    cout<<"death" << endl;
     jvm->dead(jvmti);
 }
 
