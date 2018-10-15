@@ -18,6 +18,7 @@
 #include "Scheduler.h"
 #include "JVM.hpp"
 #include "AgentUtil.hpp"
+#include "Thread.hpp"
 
 using namespace std;
 using namespace Bosma;

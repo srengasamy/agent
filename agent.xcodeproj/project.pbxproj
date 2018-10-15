@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D34772D21713BF900C9704A /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D34772B21713BF900C9704A /* Thread.cpp */; };
+		4D34772E21713BF900C9704A /* Thread.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D34772C21713BF900C9704A /* Thread.hpp */; };
 		4D39C87F216D5BBE00DEC89A /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D39C87D216D5BBE00DEC89A /* Counter.cpp */; };
 		4D39C880216D5BBE00DEC89A /* Counter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 4D39C87E216D5BBE00DEC89A /* Counter.hpp */; };
 		4D5DCACA216D749100395ECA /* MetricRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5DCAC8216D749100395ECA /* MetricRegistry.cpp */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D34772B21713BF900C9704A /* Thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
+		4D34772C21713BF900C9704A /* Thread.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Thread.hpp; sourceTree = "<group>"; };
 		4D39C875216D57FF00DEC89A /* libagent.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libagent.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D39C87D216D5BBE00DEC89A /* Counter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
 		4D39C87E216D5BBE00DEC89A /* Counter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Counter.hpp; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 				4D5DCAC9216D749100395ECA /* MetricRegistry.hpp */,
 				4D5DCAD0216DB90500395ECA /* WavefrontReporter.cpp */,
 				4D5DCAD1216DB90500395ECA /* WavefrontReporter.hpp */,
+				4D34772B21713BF900C9704A /* Thread.cpp */,
+				4D34772C21713BF900C9704A /* Thread.hpp */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -96,6 +102,7 @@
 				4D5DCACB216D749100395ECA /* MetricRegistry.hpp in Headers */,
 				4D5DCADA216DCE8300395ECA /* Agent.hpp in Headers */,
 				4D5DCAD3216DB90500395ECA /* WavefrontReporter.hpp in Headers */,
+				4D34772E21713BF900C9704A /* Thread.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +165,7 @@
 			files = (
 				4D5DCADD216F27F400395ECA /* JVM.cpp in Sources */,
 				4D5DCACA216D749100395ECA /* MetricRegistry.cpp in Sources */,
+				4D34772D21713BF900C9704A /* Thread.cpp in Sources */,
 				4D5DCAD9216DCE8300395ECA /* Agent.cpp in Sources */,
 				4D5DCAE1216F283A00395ECA /* AgentUtil.cpp in Sources */,
 				4D39C87F216D5BBE00DEC89A /* Counter.cpp in Sources */,

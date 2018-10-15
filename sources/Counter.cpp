@@ -41,7 +41,7 @@ string Counter::getPoints(){
         if(times[i] == 0 || times[i]> now){
             continue;
         }
-        stream << "\u2206" << name << " " << values[i] <<" " << times[i] << " " << "host=\"" << host << "\"" << "\n";
+        stream << name << " " << values[i] <<" " << times[i] << " " << "host=\"" << host << "\"" << "\n";
         times[i] = 0;
         values[i] = 0;
     }        

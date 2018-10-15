@@ -12,20 +12,19 @@ unsigned int max_n_threads = 10;
 static MetricRegistry *registry;
 static WavefrontReporter *reporter;
 static Scheduler *scheduler;
-static Counter* threadCounter;
-static Counter* blockedCounter;
 static JVM* jvm;
+static Thread *threadMonitor;
 
 void report(WavefrontReporter *reporter){
     reporter->report();    
 }
 
 void ThreadStart(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread) {
-    threadCounter->inc();
+    threadMonitor->ThreadStart(jvmti, jni_env, thread);
 }
 
 void ThreadEnd(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread) {
-    threadCounter->dec();
+    threadMonitor->ThreadEnd(jvmti, jni_env, thread);
 }
 
 void JNICALL MonitorWait(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, jobject object, jlong timeout) {
@@ -35,11 +34,11 @@ void JNICALL MonitorWaited(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, job
 }
 
 void JNICALL MonitorContendedEnter(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, jobject object) {
-    blockedCounter->inc();
+    threadMonitor->MonitorContendedEnter(jvmti, jni_env, thread, object);
 }
 
 void JNICALL MonitorContendedEntered(jvmtiEnv *jvmti, JNIEnv *jni_env, jthread thread, jobject object) {
-    blockedCounter->dec();
+    threadMonitor->MonitorContendedEntered(jvmti, jni_env, thread, object);
 }
 
 void JNICALL VMStart(jvmtiEnv *jvmti, JNIEnv *env) {
@@ -57,11 +56,9 @@ void JNICALL VMDeath(jvmtiEnv *jvmti, JNIEnv *env) {
 JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM *vm, char *options, void *reserved) {
     cout<< "Loading agent." << endl;
     registry = new MetricRegistry();
-    threadCounter = registry->counter("thread.all");
-    blockedCounter = registry->counter("thread.blocked");
     reporter = new WavefrontReporter(registry);
     scheduler = new Scheduler(max_n_threads);
-    scheduler->every(5s, report, reporter);
+    scheduler->every(15s, report, reporter);
     
     jvmtiError error;
     jvmtiEnv *jvmti;
@@ -77,6 +74,7 @@ JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM *vm, char *options, void *reserved) {
         cout << "ERROR: Unable to access JVMTI" << endl;
     }
     jvm->jvmti = jvmti;
+    threadMonitor = new Thread(jvm, registry);
     
     (void) memset(&capabilities, 0, sizeof(capabilities));
     (void) memset(&callbacks, 0, sizeof(callbacks));
@@ -84,6 +82,8 @@ JNIEXPORT jint JNICALL Agent_OnLoad(JavaVM *vm, char *options, void *reserved) {
     capabilities.can_generate_monitor_events = 1;
     capabilities.can_get_source_file_name = 1;
     capabilities.can_get_line_numbers = 1;
+    capabilities.can_get_monitor_info = 1;
+    capabilities.can_tag_objects = 1;
     
     error = jvmti->AddCapabilities(&capabilities);
     checkError(error, "ERROR: Unable to get necessary JVMTI capabilities.");

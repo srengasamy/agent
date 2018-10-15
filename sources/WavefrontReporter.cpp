@@ -25,7 +25,6 @@ void WavefrontReporter::report(){
     while (it != counters.end()) {
         string points  = (*it)->getPoints();
         if(!points.empty()){
-            cout << points << endl;
             sendData(points);
         }
         it++;
@@ -56,7 +55,7 @@ bool WavefrontReporter::sendData(string data){
     if(send(sock, data.c_str(), strlen(data.c_str()), 0) < 0){
         return false;
     }
-    cout << "Points sent." << endl;
+    //cout << "Points sent." << endl;
     return true;
 }
 
